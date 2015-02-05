@@ -31,7 +31,9 @@ io.on('connection', function (socket) {
 
   // when the client emits 'new message', this listens and executes
   socket.on('holi', function (data) {
-    console.log("aquii==>" + data);
+    console.log("data");
+    
+    console.log(data);
   });
 
   // when the client emits 'new message', this listens and executes
