@@ -1,3 +1,0 @@
-# LiveChat-Multiplatform
-
-XD
