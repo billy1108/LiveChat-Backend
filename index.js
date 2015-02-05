@@ -26,7 +26,13 @@ var usernames = {};
 var numUsers = 0;
 
 io.on('connection', function (socket) {
+  console.log("coneccctoo!!!")
   var addedUser = false;
+
+  // when the client emits 'new message', this listens and executes
+  socket.on('holi', function (data) {
+    console.log("aquii==>" + data);
+  });
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
