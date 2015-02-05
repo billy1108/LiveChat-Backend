@@ -1,0 +1,16 @@
+{
+  "name": "LiveChatMultiplatform",
+  "version": "0.0.1",
+  "description": "Live Chat mobil",
+  "main": "index.js",
+  "author": "Billy Caballero",
+  "private": true,
+  "license": "BSD",
+  "dependencies": {
+    "express": "3.4.8",
+    "socket.io": "1.2.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
