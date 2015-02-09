@@ -248,7 +248,7 @@ $(function() {
       navigator.geolocation.getCurrentPosition(function (position){
         var location = null;
         if( data.latitude != null && data.longitude != null){
-          location = new google.maps.LatLng(position.latitude, position.longitude);
+          location = new google.maps.LatLng(data.latitude, data.longitude);
         }else{
           location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
           socket.emit('new message map', { latitude: position.coords.latitude, longitude: position.coords.longitude});
