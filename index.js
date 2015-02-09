@@ -26,6 +26,7 @@ var usernames = {};
 var numUsers = 0;
 
 io.on('connection', function (socket) {
+  console.log("entre");
   var addedUser = false;
 
   // when the client emits 'new message', this listens and executes
@@ -36,6 +37,17 @@ io.on('connection', function (socket) {
       message: data
     });
   });
+
+    socket.on('new message map', function (data) {
+    // we tell the client to execute 'new message map'
+    console.log(data);
+    socket.broadcast.emit('new message map', {
+      username: socket.username,
+      latitude: data.latitude,
+      longitude: data.longitude
+    });
+  });
+
 
   // when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {

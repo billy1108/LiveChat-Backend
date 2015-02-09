@@ -148,3 +148,29 @@ ul {
   right: 0;
   width: 100%;
 }
+
+#setLocation{
+  position: absolute;
+  bottom: 93%;
+  left: 85%;
+  z-index: 2;
+  background: #65BCE8;
+  color: #fff;
+  padding: 20px;
+}
+
+.aMap{
+  width: 300px;
+  height: 250px;
+  
+  padding: 10px;
+  background-color: #fff;
+  -webkit-box-shadow:  0px 0px 5px 1px rgba(0, 0, 0, .1);
+  box-shadow:  0px 0px 5px 1px rgba(0, 0, 0, .15);
+}
+
+#map_loc{
+  width: 500px;
+  margin: 30px auto 0;
+  padding: 10px;
+}

@@ -16,6 +16,7 @@ $(function() {
   var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
 
+  var temp_id_map_location = null;
   // Prompt for setting a username
   var username;
   var connected = false;
@@ -95,6 +96,26 @@ $(function() {
       .data('username', data.username)
       .addClass(typingClass)
       .append($usernameDiv, $messageBodyDiv);
+
+    addMessageElement($messageDiv, options);
+  }
+
+  function addChatMessageMap(data, options){
+    options = options || {};
+    var $usernameDiv = $('<span class="username"/>')
+      .text(data.username)
+      .css('color', getUsernameColor(data.username));
+    temp_id_map_location = new Date().getTime();
+    var $messageBodyDiv = $('<div class="'+temp_id_map_location+' aMap">')
+      .text(" ");
+
+    var $message_body = $('<div id="map_loc" >').append($messageBodyDiv);
+
+    var typingClass = data.typing ? 'typing' : '';
+    var $messageDiv = $('<li class="message"/>')
+      .data('username', data.username)
+      .addClass(typingClass)
+      .append($usernameDiv, $message_body);
 
     addMessageElement($messageDiv, options);
   }
@@ -188,6 +209,11 @@ $(function() {
     return COLORS[index];
   }
 
+  // show error if location can't be found
+  function showError() {
+    alert("Location can't be found");
+  }
+
   // Keyboard events
 
   $window.keydown(function (event) {
@@ -206,6 +232,45 @@ $(function() {
       }
     }
   });
+
+  $('#setLocation').click(function(){
+    //execute geolocation
+    setMap({ username: username });
+
+  });
+
+  function setMap(data){
+    if (navigator.geolocation) {
+      addChatMessageMap({ username: data.username })
+      var map_view = $("."+temp_id_map_location)[0];
+      console.log("sadas===> " + temp_id_map_location);
+      console.log(map_view[0]);
+      navigator.geolocation.getCurrentPosition(function (position){
+        var location = null;
+        if( data.latitude != null && data.longitude != null){
+          location = new google.maps.LatLng(position.latitude, position.longitude);
+        }else{
+          location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          socket.emit('new message map', { latitude: position.coords.latitude, longitude: position.coords.longitude});
+        }
+        
+        var map = new google.maps.Map(map_view, {
+                  zoom: 20,
+                  disableDefaultUI: true, 
+                  mapTypeId: google.maps.MapTypeId.TERRAIN,
+                });
+        var marker = new google.maps.Marker({
+                  map: map,
+                  position: location,
+                  animation: google.maps.Animation.DROP,
+                  title: "This is your location"
+                });
+        map.setCenter(location);
+      }, showError);
+    }else {
+      alert("Your browser is a shit (like alonso)");
+    }
+  }
 
   $inputMessage.on('input', function() {
     updateTyping();
@@ -239,6 +304,12 @@ $(function() {
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
     addChatMessage(data);
+  });
+
+  socket.on('new message map', function (data) {
+    console.log(" data => ")
+    console.log(data)
+    setMap(data);
   });
 
   // Whenever the server emits 'user joined', log it in the chat body
