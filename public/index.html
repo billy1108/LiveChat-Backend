@@ -11,7 +11,7 @@
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="/main.js"></script>
 
-  <ul class="pages">
+<!--   <ul class="pages">
     <li class="chat page">
       <div class="chatArea">
         <ul class="messages"></ul>
@@ -21,15 +21,17 @@
       </div>  
       <input class="inputMessage" placeholder="Type here..."/>
     </li>
-    <li class="login page">
+    <li class="login page"> -->
       <!-- <div class="form"> -->
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
+        <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button> -->
         <!-- <h3 class="title">What's your nickname?</h3>
         <input class="usernameInput" type="text" maxlength="14" /> -->
       <!-- </div> -->
-    </li>
-  </ul>
+<!--     </li>
+  </ul> -->
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
 
   <script src="/socket.io/socket.io.js"></script>
 </body>
