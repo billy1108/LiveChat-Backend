@@ -1,4 +1,5 @@
 var socket = null;
+var username = null;
 $(function() {
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
@@ -19,7 +20,6 @@ $(function() {
 
   var temp_id_map_location = null;
   // Prompt for setting a username
-  var username;
   var connected = false;
   var typing = false;
   var lastTypingTime;
@@ -237,7 +237,6 @@ $(function() {
   $('#setLocation').click(function(){
     //execute geolocation
     setMap({ username: username });
-
   });
 
   function setMap(data){
@@ -342,6 +341,7 @@ function setUsernameWithFacebook(name){
   $('.chat.page').show();
   $('.login.page').off('click');
   socket.emit('add user', name);
+  username = name;
 }
 
 // handle fb
