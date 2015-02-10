@@ -8,7 +8,9 @@
   "license": "BSD",
   "dependencies": {
     "express": "3.4.8",
-    "socket.io": "1.0"
+    "socket.io": "1.0",
+    "passport": "0.2.1",
+    "passport-facebook": "1.0.3"
   },
   "scripts": {
     "start": "node index.js"
