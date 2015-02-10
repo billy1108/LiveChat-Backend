@@ -1,3 +1,4 @@
+var socket = null;
 $(function() {
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
@@ -24,7 +25,7 @@ $(function() {
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
 
-  var socket = io();
+  socket = io();
 
   function addParticipantsMessage (data) {
     var message = '';
@@ -50,13 +51,6 @@ $(function() {
       // Tell the server your username
       socket.emit('add user', username);
     }
-  }
-
-  function setUsernameWithFacebook(name){
-    $loginPage.fadeOut();
-    $chatPage.show();
-    $loginPage.off('click');
-    socket.emit('add user', name);
   }
 
   // Sends a chat message
@@ -343,8 +337,12 @@ $(function() {
   });
 });
 
-
-
+function setUsernameWithFacebook(name){
+  $('.login.page').fadeOut();
+  $('.chat.page').show();
+  $('.login.page').off('click');
+  socket.emit('add user', name);
+}
 
 // handle fb
 
