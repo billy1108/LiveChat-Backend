@@ -10,7 +10,6 @@
 <script src="//maps.googleapis.com/maps/api/js?sensor=true"></script>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
   // handle fb
   function statusChangeCallback(response) {
@@ -62,19 +61,17 @@
     });
   }
 
-  function setUsernameWithFacebook(name){
-    $('.login.page').fadeOut();
-    $('.chat.page').show();
-    $('.login.page').off('click');
-    socket.emit('add user', name);
-    username = name;
-  }
+  // function setUsernameWithFacebook(name){
+  //   $('.login.page').fadeOut();
+  //   $('.chat.page').show();
+  //   $('.login.page').off('click');
+  //   socket.emit('add user', name);
+  //   username = name;
+  // }
 
 </script>
 
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="/main.js"></script>
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
