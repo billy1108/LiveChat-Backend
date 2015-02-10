@@ -52,6 +52,13 @@ $(function() {
     }
   }
 
+  function setUsernameWithFacebook(name){
+    $loginPage.fadeOut();
+    $chatPage.show();
+    $loginPage.off('click');
+    socket.emit('add user', name);
+  }
+
   // Sends a chat message
   function sendMessage () {
     var message = $inputMessage.val();
