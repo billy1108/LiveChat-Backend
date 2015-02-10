@@ -1,38 +1,20 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Socket Multiplatform</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="//maps.googleapis.com/maps/api/js?sensor=true"></script>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+<script src="//maps.googleapis.com/maps/api/js?sensor=true"></script>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/main.js"></script>
 
-  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="/main.js"></script>
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
 
-<!--   <ul class="pages">
-    <li class="chat page">
-      <div class="chatArea">
-        <ul class="messages"></ul>
-      </div>
-      <div id="setLocation" >
-        Send Location
-      </div>  
-      <input class="inputMessage" placeholder="Type here..."/>
-    </li>
-    <li class="login page"> -->
-      <!-- <div class="form"> -->
-        <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button> -->
-        <!-- <h3 class="title">What's your nickname?</h3>
-        <input class="usernameInput" type="text" maxlength="14" /> -->
-      <!-- </div> -->
-<!--     </li>
-  </ul> -->
-  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        </fb:login-button>
+<div id="status">
+</div>
 
-  <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>
