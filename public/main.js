@@ -1,4 +1,3 @@
-
 $(function() {
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
@@ -19,12 +18,13 @@ $(function() {
 
   var temp_id_map_location = null;
   // Prompt for setting a username
+  var username;
   var connected = false;
   var typing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
 
-  socket = io();
+  var socket = io();
 
   function addParticipantsMessage (data) {
     var message = '';
@@ -50,6 +50,13 @@ $(function() {
       // Tell the server your username
       socket.emit('add user', username);
     }
+  }
+
+  function setUsernameWithFacebook(name){
+    $loginPage.fadeOut();
+    $chatPage.show();
+    $loginPage.off('click');
+    socket.emit('add user', name);
   }
 
   // Sends a chat message
@@ -236,6 +243,7 @@ $(function() {
   $('#setLocation').click(function(){
     //execute geolocation
     setMap({ username: username });
+
   });
 
   function setMap(data){
@@ -334,7 +342,3 @@ $(function() {
     removeChatTyping(data);
   });
 });
-
-
-
-
